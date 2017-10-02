@@ -1,5 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'Roboto', sans-serif;
+  width: 100vw;
+  height: 100vh;
+  background: url('http://wallpup.com/wp-content/uploads/2013/02/Cute-Pikachu-Wallpaper.jpg') center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
