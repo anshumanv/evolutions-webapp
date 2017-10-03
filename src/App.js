@@ -1,17 +1,39 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import evolutions from 'evolutions'
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchInput: ""
+    };
+  }
+  handleEvolve = (e) => {
+    e.preventDefault()
+    console.log('evolve button clicked');
+    try {
+      if(evolutions.exists(this.state.searchInput)){
+        console.log('in the if statement');
+        console.log(evolutions.getEvolutionChain(this.state.searchInput)); //This is throwing an error.
+      }
+    }
+    catch(e){
+      console.log('The error sent back: ',e);
+      //Will setup a redirect here when the error is caught.
+    }
+  }
   render() {
+    // console.log('trying exsist on moltres',evolutions.exists('moltres'))
     return (
       <div className="App">
         <div className="App-main">
           <h1 className="App-title">Ev<img src={logo} className="App-logo" alt="logo" />lutions</h1>
-          <form>
+          <form onSubmit={this.handleEvolve}>
             <div className="App-search_bar_container">
               <div className="App-search_bar">
-                <input type="search" placeholder="Pokemon's name or ID" />
+                <input type="search" placeholder="Pokemon's name or ID" onChange={e => this.setState({searchInput: e.target.value})} value={this.state.searchInput}/>
               </div>
               <div className="App-search_bar_icon">
                 <svg style={{ width: 24 + 'px', height: 24 + 'px' }} viewBox="0 0 24 24">
@@ -19,9 +41,9 @@ class App extends Component {
                 </svg>
               </div><br></br>
             </div>
-            <input type="submit" value="Evolve!" name="evolveActionButton" className="App-button" />
-            <input type="submit" value="I'm Feeling Hype" name="randomActionButton" className="App-button" />
+            <input type="submit" value="Evolve!" name="evolveActionButton" className="App-button"/>
           </form>
+            <input type="submit" value="I'm Feeling Hype" name="randomActionButton" className="App-button" />
         </div>
       </div>
     );
