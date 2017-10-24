@@ -17,9 +17,17 @@ class App extends Component {
     try {
       if (evolutions.exists(this.state.searchInput)) {
         console.log("in the if statement");
-        console.log(
-          Object.entries(pokedex.BattlePokedex[this.state.searchInput])
-        ); //This is throwing an error.
+        if (
+          pokedex.BattlePokedex[this.state.searchInput].hasOwnProperty("evos")
+        ) {
+          console.log(
+            Object.values(pokedex.BattlePokedex[this.state.searchInput]["evos"])
+          );
+        } else {
+          console.log(
+            Object.entries(pokedex.BattlePokedex[this.state.searchInput])
+          );
+        }
       }
     } catch (e) {
       console.log("The error sent back: ", e);
