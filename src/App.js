@@ -14,19 +14,16 @@ class App extends Component {
   handleEvolve = e => {
     e.preventDefault();
     console.log("evolve button clicked");
+    let evo = this.state.searchInput;
     try {
-      if (evolutions.exists(this.state.searchInput)) {
-        console.log("in the if statement");
-        if (
-          pokedex.BattlePokedex[this.state.searchInput].hasOwnProperty("evos")
-        ) {
-          console.log(
-            Object.values(pokedex.BattlePokedex[this.state.searchInput]["evos"])
-          );
+      if (evolutions.exists(evo)) {
+        if (pokedex.BattlePokedex[evo].hasOwnProperty("evos")) {
+          while (pokedex.BattlePokedex[evo].hasOwnProperty("evos")) {
+            evo = Object.values(pokedex.BattlePokedex[evo]["evos"]);
+            console.log(evo);
+          }
         } else {
-          console.log(
-            Object.entries(pokedex.BattlePokedex[this.state.searchInput])
-          );
+          console.log(Object.entries(pokedex.BattlePokedex[evo]));
         }
       }
     } catch (e) {
