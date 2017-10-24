@@ -14,7 +14,7 @@ class App extends Component {
   handleEvolve = e => {
     e.preventDefault();
     console.log("evolve button clicked");
-    let evo = this.state.searchInput;
+    let evo = this.state.searchInput.toLowerCase();
     try {
       if (evolutions.exists(evo)) {
         if (pokedex.BattlePokedex[evo].hasOwnProperty("evos")) {
