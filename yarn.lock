@@ -2420,8 +2420,8 @@ eventsource@0.1.6:
     original ">=0.0.5"
 
 evolutions@^1.0.2:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/evolutions/-/evolutions-1.0.3.tgz#77b2ab83e8e7cc8f5da7f3b6cdcb12a560a9de93"
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/evolutions/-/evolutions-1.0.2.tgz#8fff1af7919cf6e70f40e8361a03d3bf76e569a0"
   dependencies:
     deasync "^0.1.10"
     meow "^3.7.0"
