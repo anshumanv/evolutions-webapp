@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import evolutions from 'evolutions';
 
 import logo from './logo.svg';
 import './App.css';
@@ -14,7 +13,22 @@ class App extends Component {
     };
     this.handleEvolve = this.handleEvolve.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.randomProperty = this.randomProperty.bind(this);
+    this.handleHypeClick = this.handleHypeClick.bind(this);
   }
+
+  // A function to return random key
+  randomProperty(obj) {
+    let keys = Object.keys(obj)
+    return keys[ keys.length * Math.random() << 0];
+  };
+
+  handleHypeClick(event) {
+    let searchInput = this.randomProperty(pokedex.BattlePokedex);
+    this.setState({ searchInput });
+    this.handleEvolve(event);
+  }
+
 
 
   handleEvolve(event) {
@@ -29,7 +43,7 @@ class App extends Component {
     // Iterate and pick evolutions/pre-evolutions.
     try {
       // Pick evolutions
-      if (evolutions.exists(pokemon)) {
+      if (pokedex.BattlePokedex.hasOwnProperty(pokemon)) {
         result = pokemon;
         if (pokedex.BattlePokedex[pokemon].hasOwnProperty('evos')) {
           while (pokedex.BattlePokedex[pokemon].hasOwnProperty('evos')) {
@@ -82,6 +96,7 @@ class App extends Component {
                   name="searchInput"
                   placeholder="Pokemon's name or ID"
                   onChange={this.handleChange}
+                  value={this.state.searchInput}
                 />
               </div>
               <div className="App-search_bar_icon">
@@ -98,7 +113,7 @@ class App extends Component {
               Evolve
             </button>
           </form>
-          <button type="submit" className="App-button" name="randomActionButton">
+          <button type="submit" className="App-button" name="randomActionButton" onClick={this.handleHypeClick}>
             I'm Feeling Hype
           </button>
           <div className="result">
