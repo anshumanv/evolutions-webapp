@@ -14,6 +14,8 @@ class App extends Component {
     this.handleEvolve = this.handleEvolve.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
+
+
   handleEvolve(event) {
     event.preventDefault();
     console.log('evolve button clicked');
@@ -34,9 +36,12 @@ class App extends Component {
       // Will setup a redirect here when the error is caught.
     }
   }
+
+
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
+
   render() {
     // console.log('trying exsist on moltres',evolutions.exists('moltres'))
     return (
@@ -72,6 +77,9 @@ class App extends Component {
           <button type="submit" className="App-button" name="randomActionButton">
             I'm Feeling Hype
           </button>
+          <div className="result">
+            No results
+          </div>
         </div>
       </div>
     );
