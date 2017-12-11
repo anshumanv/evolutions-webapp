@@ -39,7 +39,7 @@ class App extends Component {
     
     // Setting variables to the searchInput from app state.
     pokemon = temp = this.state.searchInput.toLowerCase();
-    
+    console.log(pokemon);
     // Iterate and pick evolutions/pre-evolutions.
     try {
       // Pick evolutions
@@ -64,12 +64,10 @@ class App extends Component {
             result = `${pokemon} - ` + result;
           }
         }
-        this.setState({ result });  // Store the result in app's state
       } else {  // Case when no pokemon matches the string in the searchInput
         result = "Pokemon doesn't exist";
-        this.setState({ result });
       }
-
+      this.setState({ result });  // Store the result in app's state
     } catch (error) {
       console.trace('The error sent back: ', error);
       // Will setup a redirect here when the error is caught.
