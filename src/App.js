@@ -10,6 +10,7 @@ class App extends Component {
     super(props);
     this.state = {
       searchInput: '',
+      result: ''
     };
     this.handleEvolve = this.handleEvolve.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -18,25 +19,48 @@ class App extends Component {
 
   handleEvolve(event) {
     event.preventDefault();
-    console.log('evolve button clicked');
-    let evo = this.state.searchInput.toLowerCase();
+
+    let result = '';  // String that contains the final chain.
+    let pokemon, temp;
+    
+    // Setting variables to the searchInput from app state.
+    pokemon = temp = this.state.searchInput.toLowerCase();
+    
+    // Iterate and pick evolutions/pre-evolutions.
     try {
-      if (evolutions.exists(evo)) {
-        if (Object.prototype.hasOwnProperty.call(pokedex.BattlePokedex[evo], 'evos')) {
-          while (Object.prototype.hasOwnProperty.call(pokedex.BattlePokedex[evo], 'evos')) {
-            evo = Object.values(pokedex.BattlePokedex[evo].evos);
-            console.log(evo);
+      // Pick evolutions
+      if (evolutions.exists(pokemon)) {
+        result = pokemon;
+        if (pokedex.BattlePokedex[pokemon].hasOwnProperty('evos')) {
+          while (pokedex.BattlePokedex[pokemon].hasOwnProperty('evos')) {
+            console.log(pokedex.BattlePokedex[pokemon].evos);
+            pokemon = pokedex.BattlePokedex[pokemon].evos[0];
+            result += ` - ${pokemon}`;  // Appending to the result
           }
-        } else {
-          console.log(Object.entries(pokedex.BattlePokedex[evo]));
         }
+
+        // Set it to the initially entered pokemon
+        pokemon = temp;
+
+        // Pick pre-evolutions
+        if (pokedex.BattlePokedex[pokemon].hasOwnProperty('prevo')) {
+          while (pokedex.BattlePokedex[pokemon].hasOwnProperty('prevo')) {
+            pokemon = pokedex.BattlePokedex[pokemon].prevo;
+            if(pokemon)console.log(pokedex.BattlePokedex[pokemon].prevo);
+            result = `${pokemon} - ` + result;
+          }
+        }
+        this.setState({ result });  // Store the result in app's state
+      } else {  // Case when no pokemon matches the string in the searchInput
+        result = "Pokemon doesn't exist";
+        this.setState({ result });
       }
+
     } catch (error) {
       console.trace('The error sent back: ', error);
       // Will setup a redirect here when the error is caught.
     }
   }
-
 
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
@@ -78,7 +102,7 @@ class App extends Component {
             I'm Feeling Hype
           </button>
           <div className="result">
-            No results
+            Result: {this.state.result}
           </div>
         </div>
       </div>
