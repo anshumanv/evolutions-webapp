@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import pokedex from './pokedex';
+import { lower } from  './helpers'
 
 class App extends Component {
   constructor(props) {
@@ -38,7 +39,7 @@ class App extends Component {
     let pokemon, temp;
     
     // Setting variables to the searchInput from app state.
-    pokemon = temp = this.state.searchInput.toLowerCase();
+    pokemon = temp = lower(this.state.searchInput);
     console.log(pokemon);
     // Iterate and pick evolutions/pre-evolutions.
     try {
