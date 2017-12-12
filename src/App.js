@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import pokedex from './pokedex';
-import { lower } from  './helpers'
+import { lower, isNum } from  './helpers'
 
 class App extends Component {
   constructor(props) {
@@ -40,7 +40,14 @@ class App extends Component {
     
     // Setting variables to the searchInput from app state.
     pokemon = temp = lower(this.state.searchInput);
-    console.log(pokemon);
+    if(isNum(pokemon)) {
+      let pokemon_it = Object.keys(pokedex.BattlePokedex)[pokemon];
+
+      while(pokedex.BattlePokedex[pokemon_it] && pokedex.BattlePokedex[pokemon_it].num !== Number(temp)) {
+        pokemon_it = Object.keys(pokedex.BattlePokedex)[pokemon++];
+      }
+      pokemon = temp = pokemon_it;
+    }
     // Iterate and pick evolutions/pre-evolutions.
     try {
       // Pick evolutions
