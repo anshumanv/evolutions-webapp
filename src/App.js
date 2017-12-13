@@ -16,6 +16,7 @@ class App extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.randomProperty = this.randomProperty.bind(this);
     this.handleHypeClick = this.handleHypeClick.bind(this);
+    this.computeResult = this.computeResult.bind(this);
   }
 
   // A function to return random key
@@ -27,14 +28,10 @@ class App extends Component {
   handleHypeClick(event) {
     let searchInput = this.randomProperty(pokedex.BattlePokedex);
     this.setState({ searchInput });
-    this.handleEvolve(event);
+    this.setState({ result: this.computeResult(this.state.searchInput)});
   }
 
-
-
-  handleEvolve(event) {
-    event.preventDefault();
-
+  computeResult() {
     let result = '';  // String that contains the final chain.
     let pokemon, temp;
     
@@ -43,7 +40,7 @@ class App extends Component {
     if(isNum(pokemon)) {
       let pokemon_it = Object.keys(pokedex.BattlePokedex)[pokemon];
 
-      while(pokedex.BattlePokedex[pokemon_it] && pokedex.BattlePokedex[pokemon_it].num !== Number(temp)) {
+      while(pokedex.BattlePokedex[pokemon_it] && pokedex.BattlePokedex[pokemon_it].num !== parseInt(temp)) {
         pokemon_it = Object.keys(pokedex.BattlePokedex)[pokemon++];
       }
       pokemon = temp = pokemon_it;
@@ -75,11 +72,17 @@ class App extends Component {
       } else {  // Case when no pokemon matches the string in the searchInput
         result = "Pokemon doesn't exist";
       }
-      this.setState({ result });  // Store the result in app's state
+      return result;
     } catch (error) {
       console.trace('The error sent back: ', error);
       // Will setup a redirect here when the error is caught.
     }
+
+  }
+
+  handleEvolve(event) {
+    event.preventDefault();
+    this.setState({ result: this.computeResult(this.state.searchInput)});
   }
 
   handleChange(event) {
