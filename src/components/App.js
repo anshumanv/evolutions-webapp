@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
-import logo from './logo.svg';
-import './App.css';
-import pokedex from './pokedex';
-import { lower, isNum } from  './helpers'
+import logo from '../logo.svg';
+import '../css/App.css';
+import pokedex from '../pokedex';
+import { lower, isNum } from  '../helpers'
 
 class App extends Component {
   constructor(props) {
