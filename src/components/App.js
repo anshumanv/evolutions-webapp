@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
+import SkyLight from 'react-skylight';
 
 import logo from '../logo.svg';
 import '../css/App.css';
 import pokedex from '../pokedex';
-import { lower, isNum } from  '../helpers'
+import { lower, isNum } from  '../helpers';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       searchInput: '',
-      result: ''
+      result: '',
+      outputVisible: false
     };
     this.handleEvolve = this.handleEvolve.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -72,6 +74,7 @@ class App extends Component {
       } else {  // Case when no pokemon matches the string in the searchInput
         result = "Pokemon doesn't exist";
       }
+      this.simpleDialog.show();
       return result;
     } catch (error) {
       console.trace('The error sent back: ', error);
@@ -122,12 +125,16 @@ class App extends Component {
               Evolve
             </button>
           </form>
+          <SkyLight hideOnOverlayClicked ref={ref => this.simpleDialog = ref} title="Result">
+            {this.state.result}
+          </SkyLight>
           <button type="submit" className="App-button" name="randomActionButton" onClick={this.handleHypeClick}>
             I'm Feeling Hype
           </button>
-          <div className="result">
-            Result: {this.state.result}
-          </div>
+          {//<div className="result">
+            //Result: {this.state.result}
+          //</div>
+          }
         </div>
       </div>
     );
