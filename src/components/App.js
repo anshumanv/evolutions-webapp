@@ -40,12 +40,13 @@ class App extends Component {
     // Setting variables to the searchInput from app state.
     pokemon = temp = lower(this.state.searchInput);
     if(isNum(pokemon)) {
-      let pokemon_it = Object.keys(pokedex.BattlePokedex)[pokemon];
+      let pokemon_it = Object.keys(pokedex.BattlePokedex)[pokemon-1];
 
       while(pokedex.BattlePokedex[pokemon_it] && pokedex.BattlePokedex[pokemon_it].num !== parseInt(temp)) {
         pokemon_it = Object.keys(pokedex.BattlePokedex)[pokemon++];
       }
       pokemon = temp = pokemon_it;
+      console.log(pokemon);
     }
     // Iterate and pick evolutions/pre-evolutions.
     try {
@@ -127,7 +128,7 @@ class App extends Component {
             </button>
           </form>
           <SkyLight hideOnOverlayClicked ref={ref => this.simpleDialog = ref} title="Result">
-            {this.state.result}
+            <div>{this.state.result}</div>
           </SkyLight>
           <button type="submit" className="App-button" name="randomActionButton" onClick={this.handleHypeClick}>
             I'm Feeling Hype
