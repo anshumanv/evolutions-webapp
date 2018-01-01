@@ -86,6 +86,7 @@ class App extends Component {
   handleEvolve(event) {
     event.preventDefault();
     this.setState({ result: this.computeResult(this.state.searchInput)});
+    this.setState({ searchInput: ''});
   }
 
   handleChange(event) {
