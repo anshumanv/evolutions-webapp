@@ -113,7 +113,7 @@ class App extends Component {
                   value={this.state.searchInput}
                 />
               </div>
-              <div className="App-search_bar_icon">
+              <div className="App-search_bar_icon" onClick={this.handleEvolve}>
                 <svg style={{ width: `${24}px`, height: `${24}px` }} viewBox="0 0 24 24">
                   <path
                     fill="#000000"
