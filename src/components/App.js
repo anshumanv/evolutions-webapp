@@ -72,7 +72,7 @@ class App extends Component {
           }
         }
       } else {  // Case when no pokemon matches the string in the searchInput
-        result = "Pokemon doesn't exist";
+        result = "No results obtained!";
       }
       this.simpleDialog.show();
       return result;
