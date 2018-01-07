@@ -79,7 +79,6 @@ class App extends Component {
       return result;
     } catch (error) {
       console.trace('The error sent back: ', error);
-      // Will setup a redirect here when the error is caught.
     }
 
   }
@@ -95,7 +94,6 @@ class App extends Component {
   }
 
   render() {
-    // console.log('trying exsist on moltres',evolutions.exists('moltres'))
     return (
       <div className="App">
         <div className="App-main">
