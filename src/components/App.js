@@ -141,10 +141,6 @@ class App extends Component {
           <button type="submit" className="App-button" name="randomActionButton" onClick={this.handleHypeClick}>
             <div>I'm Feeling Hype</div>
           </button>
-          {//<div className="result">
-            //Result: {this.state.result}
-          //</div>
-          }
         </div>
       </div>
     );
