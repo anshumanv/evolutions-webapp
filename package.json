@@ -3,8 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "pokemon-gif": "^1.0.9",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
+    "react-pokemon-gif": "^1.0.0",
     "react-scripts": "1.0.14",
     "react-skylight": "^0.5.0"
   },

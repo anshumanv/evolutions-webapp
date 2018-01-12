@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import SkyLight from 'react-skylight';
+import pokemonGif from 'pokemon-gif';
 
 import logo from '../logo.svg';
 import '../css/App.css';
@@ -10,8 +11,9 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchInput: '',
+      searchInput: 'Pichu',
       result: '',
+      pokemons: [],
       outputVisible: false
     };
     this.handleEvolve = this.handleEvolve.bind(this);
@@ -33,9 +35,14 @@ class App extends Component {
     this.setState({ result: this.computeResult(this.state.searchInput)});
   }
 
+  storePokemons(pokemons) {
+    this.setState({ pokemons });
+  }
+
   computeResult() {
     let result = '';  // String that contains the final chain.
     let pokemon, temp;
+    let pokemons = [];
     
     // Setting variables to the searchInput from app state.
     pokemon = temp = lower(this.state.searchInput);
@@ -46,47 +53,47 @@ class App extends Component {
         pokemon_it = Object.keys(pokedex.BattlePokedex)[pokemon++];
       }
       pokemon = temp = pokemon_it;
-      console.log(pokemon);
     }
     // Iterate and pick evolutions/pre-evolutions.
     try {
-      // Pick evolutions
+
       if (pokedex.BattlePokedex.hasOwnProperty(pokemon)) {
-        result = pokemon;
-        if (pokedex.BattlePokedex[pokemon].hasOwnProperty('evos')) {
-          while (pokedex.BattlePokedex[pokemon].hasOwnProperty('evos')) {
-            console.log(pokedex.BattlePokedex[pokemon].evos);
-            pokemon = pokedex.BattlePokedex[pokemon].evos[0];
-            result += ` - ${pokemon}`;  // Appending to the result
-          }
+        // Pick pre-evolutions
+        while (pokedex.BattlePokedex[pokemon].hasOwnProperty('prevo')) {
+          pokemon = pokedex.BattlePokedex[pokemon].prevo;
+          pokemons.push(pokemon);
+          result = `${pokemon} - ` + result;
         }
+
+        pokemons.reverse();
 
         // Set it to the initially entered pokemon
         pokemon = temp;
-
-        // Pick pre-evolutions
-        if (pokedex.BattlePokedex[pokemon].hasOwnProperty('prevo')) {
-          while (pokedex.BattlePokedex[pokemon].hasOwnProperty('prevo')) {
-            pokemon = pokedex.BattlePokedex[pokemon].prevo;
-            if(pokemon)console.log(pokedex.BattlePokedex[pokemon].prevo);
-            result = `${pokemon} - ` + result;
-          }
+                
+        // Appending originally entered pokemon
+        result += pokemon;
+        pokemons.push(pokemon);
+        
+        // Pick evolutions
+        while (pokedex.BattlePokedex[pokemon].hasOwnProperty('evos')) {
+          pokemon = pokedex.BattlePokedex[pokemon].evos[0];
+          pokemons.push(pokemon);
+          result += ` - ${pokemon}`;  // Appending to the result
         }
       } else {  // Case when no pokemon matches the string in the searchInput
         result = "No results obtained!";
       }
-      this.simpleDialog.show();
-      return result;
+    this.storePokemons(pokemons);
+    this.simpleDialog.show();
+    return result;
     } catch (error) {
       console.trace('The error sent back: ', error);
     }
-
   }
 
   handleEvolve(event) {
     event.preventDefault();
-    this.setState({ result: this.computeResult(this.state.searchInput)});
-    this.setState({ searchInput: ''});
+    this.setState({ result: this.computeResult(this.state.searchInput), pokemon: this.state.searchInput, searchInput: ''});
   }
 
   handleChange(event) {
@@ -127,9 +134,12 @@ class App extends Component {
           </form>
           <SkyLight hideOnOverlayClicked ref={ref => this.simpleDialog = ref} title="Result">
             <div>{this.state.result}</div>
+            {this.state.pokemons.map( pokemon => {
+              return <img src={pokemonGif(pokemon)} alt="" key={pokedex.BattlePokedex[pokemon].num} />
+            })}
           </SkyLight>
           <button type="submit" className="App-button" name="randomActionButton" onClick={this.handleHypeClick}>
-            I'm Feeling Hype
+            <div>I'm Feeling Hype</div>
           </button>
           {//<div className="result">
             //Result: {this.state.result}
