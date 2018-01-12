@@ -135,7 +135,7 @@ class App extends Component {
           <SkyLight hideOnOverlayClicked ref={ref => this.simpleDialog = ref} title="Result">
             <div>{this.state.result}</div>
             {this.state.pokemons.map( pokemon => {
-              return <img src={pokemonGif(pokemon)} alt="" key={pokedex.BattlePokedex[pokemon].num} />
+              return <img src={pokemonGif(pokemon)} className="pokemons" alt="" key={pokedex.BattlePokedex[pokemon].num} />
             })}
           </SkyLight>
           <button type="submit" className="App-button" name="randomActionButton" onClick={this.handleHypeClick}>
