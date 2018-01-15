@@ -1,19 +1,12 @@
 import React from 'react';
-
 import { lower, isNum } from  '../helpers';
-
 import pokedex from '../pokedex';
-
 import SkyLight from 'react-skylight';
-
 import pokemonGif from 'pokemon-gif';
-
 import '../css/App.css';
-
 import FeelingHype from './FeelingHype';
 
 class UserInput extends React.Component{
-
     constructor(props) {
         super(props);
         this.state = {
@@ -28,8 +21,6 @@ class UserInput extends React.Component{
         this.computeResult = this.computeResult.bind(this);
         this.handlingHypeClick = this.handlingHypeClick.bind(this);
     }
-
-
 
     storePokemons(pokemons) {
         this.setState({pokemons});
@@ -55,9 +46,9 @@ class UserInput extends React.Component{
             }
             pokemon = temp = pokemon_it;
         }
+
         // Iterate and pick evolutions/pre-evolutions.
         try {
-
             if (pokedex.BattlePokedex.hasOwnProperty(pokemon)) {
                 // Pick pre-evolutions
                 while (pokedex.BattlePokedex[pokemon].hasOwnProperty('prevo')) {
@@ -97,10 +88,9 @@ class UserInput extends React.Component{
             this.setState({ result: this.computeResult(this.state.searchInput), pokemon: this.state.searchInput, searchInput: ''});
         }
 
-    handleChange(event) {
-        this.setState({ [event.target.name]: event.target.value });
-    }
-
+        handleChange(event) {
+            this.setState({ [event.target.name]: event.target.value });
+        }
 
         render () {
         return(
