@@ -40,7 +40,6 @@ class UserInput extends React.Component{
         pokemon = temp = lower(this.state.searchInput);
         if(isNum(pokemon)) {
             let pokemon_it = Object.keys(pokedex.BattlePokedex)[pokemon-1];
-
             while( (pokedex.BattlePokedex[pokemon_it]) && (pokedex.BattlePokedex[pokemon_it].num !== parseInt(temp, 10))) {
                 pokemon_it = Object.keys(pokedex.BattlePokedex)[pokemon++];
             }
@@ -56,7 +55,6 @@ class UserInput extends React.Component{
                     pokemons.push(pokemon);
                     result = `${pokemon} - ` + result;//  '$' ??
                 }
-                console.log(pokemons);
                 pokemons.reverse();
 
                 // Set it to the initially entered pokemon
@@ -65,7 +63,6 @@ class UserInput extends React.Component{
                 // Appending originally entered pokemon
                 result += pokemon;
                 pokemons.push(pokemon);
-                console.log(pokemons);
                 // Pick evolutions
                 while (pokedex.BattlePokedex[pokemon].hasOwnProperty('evos')) {
                     pokemon = pokedex.BattlePokedex[pokemon].evos[0];
