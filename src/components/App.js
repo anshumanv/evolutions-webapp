@@ -3,6 +3,7 @@ import SkyLight from 'react-skylight';
 import pokemonGif from 'pokemon-gif';
 import logo from '../logo.svg';
 import UserInput from './UserInput';
+import FeelingHype from './FeelingHype';
 
 class App extends Component {
 
@@ -16,7 +17,8 @@ class App extends Component {
           <h1 className="App-title">
             Ev<img src={logo} className="App-logo" alt="logo" />lutions
           </h1>
-          <UserInput/>
+          <UserInput />
+          <FeelingHype />
         </div>
       </div>
     );
