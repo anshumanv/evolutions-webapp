@@ -2,9 +2,9 @@ import React from 'react';
 import { lower, isNum } from  '../helpers';
 import pokedex from '../pokedex';
 import SkyLight from 'react-skylight';
-import pokemonGif from 'pokemon-gif';
 import '../css/App.css';
 import FeelingHype from './FeelingHype';
+import PokeSprite from 'react-poke-sprites';
 
 class UserInput extends React.Component{
     constructor(props) {
@@ -122,7 +122,7 @@ class UserInput extends React.Component{
                     <SkyLight hideOnOverlayClicked ref={ref => this.simpleDialog = ref} title="Result">
                         <div>{this.state.result}</div>
                         {this.state.pokemons.map( pokemon => {
-                            return <img src={pokemonGif(pokemon)} className="pokemons" alt="" key={pokedex.BattlePokedex[pokemon].num} />
+                            return <PokeSprite pokemon={pokemon} className="pokemons" alt={pokemon} key={pokedex.BattlePokedex[pokemon].num} />
                         })}
                     </SkyLight>
                     <FeelingHype onHypeClick={this.handlingHypeClick}/>
