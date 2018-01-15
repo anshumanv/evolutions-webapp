@@ -18,7 +18,6 @@ class App extends Component {
             Ev<img src={logo} className="App-logo" alt="logo" />lutions
           </h1>
           <UserInput />
-          <FeelingHype />
         </div>
       </div>
     );
