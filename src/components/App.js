@@ -1,28 +1,14 @@
 import React, { Component } from 'react';
 import SkyLight from 'react-skylight';
 import pokemonGif from 'pokemon-gif';
-
 import logo from '../logo.svg';
-
-
-
 import UserInput from './UserInput';
 
 class App extends Component {
 
   constructor(props){
     super(props);
-
-  //    this.handleHypeClick = this.handleHypeClick.bind(this);
-
   }
-  // A function to return random key
-
-
-/*
-*/
-
-
   render() {
     return (
       <div className="App">
