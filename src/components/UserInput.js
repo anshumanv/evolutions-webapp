@@ -41,7 +41,7 @@ class UserInput extends React.Component{
         if(isNum(pokemon)) {
             let pokemon_it = Object.keys(pokedex.BattlePokedex)[pokemon-1];
 
-            while(pokedex.BattlePokedex[pokemon_it] && pokedex.BattlePokedex[pokemon_it].num !== parseInt(temp)) {
+            while( (pokedex.BattlePokedex[pokemon_it]) && (pokedex.BattlePokedex[pokemon_it].num !== parseInt(temp, 10))) {
                 pokemon_it = Object.keys(pokedex.BattlePokedex)[pokemon++];
             }
             pokemon = temp = pokemon_it;
