@@ -1,4 +1,4 @@
-# evolutions-webapp
+# evolutions-webapp  <img src="./gastlyevolutionchain.gif" height="200px" alt="Lugia" align="right">
 
 > A react app to view pokemon evolution chain.
 
