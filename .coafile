@@ -1,0 +1,11 @@
+[whitespace]
+files = **.js
+use_spaces = True
+bears = SpaceConsistencyBear
+default_actions = *: ApplyPatchAction
+
+[javascript]
+files = **.js
+bears = JSHintBear
+allow_unused_variables = True
+javascript_strictness = False
