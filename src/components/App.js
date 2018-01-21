@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import logo from '../logo.svg';
 import UserInput from './UserInput';
 
 class App extends Component {
-  render() {
-    return (
+	render() {
+		return (
       <div className="App">
         <div className="App-main">
           <h1 className="App-title">
@@ -13,8 +13,8 @@ class App extends Component {
           <UserInput />
         </div>
       </div>
-    );
-  }
+		);
+	}
 }
 
 export default App;
