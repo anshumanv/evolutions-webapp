@@ -13,14 +13,3 @@ body {
   justify-content: center;
   align-items: center;
 }
-
-#b1 { background: url('http://www.desktopimages.org/pictures/2015/1026/2/orig_770884.jpg')  center center; }
-#b2 {background: url('http://wallpup.com/wp-content/uploads/2013/02/Cute-Pikachu-Wallpaper.jpg') center center; }
-#b3 { background: url('https://wallpaperstock.net/pokemon-pokeball-wallpapers_36973_1280x800.jpg') center center; }
-#b4 { background: url('https://images4.alphacoders.com/206/thumb-1920-206296.jpg') center center; }
-#b5 { background: hsl(120, 50%, 50%); }
-#b6 { background: hsl(150, 50%, 50%); }
-#b7 { background: hsl(180, 50%, 50%); }
-#b8 { background: hsl(210, 50%, 50%); }
-#b9 { background: hsl(240, 50%, 50%); }
-#b10 { background: hsl(270, 50%, 50%); }
