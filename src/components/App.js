@@ -3,6 +3,22 @@ import logo from '../logo.svg';
 import UserInput from './UserInput';
 
 class App extends Component {
+	
+	componentDidMount(){
+		let interval = 1000;
+		let frames = 10;
+		let int = 1;
+
+    		function refreshingBackground() {
+    		  document.body.id = `b${int}`;
+     			 int++;
+     		 if (int === frames) {
+        			int = 1;
+      			}
+    		}
+    		const swap = window.setInterval(refreshingBackground, interval);
+	}
+	
 	render() {
 		return (
       <div className="App">
@@ -10,7 +26,7 @@ class App extends Component {
           <h1 className="App-title">
             Ev<img src={logo} className="App-logo" alt="logo" />lutions
           </h1>
-          <UserInput />
+          <UserInput/>
         </div>
       </div>
 		);
