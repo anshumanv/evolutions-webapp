@@ -7,13 +7,13 @@ class App extends Component {
 	componentDidMount(){
 		let interval = 1000;
 		let frames = 10;
-		let int = 1;
+		let frameId = 1;
 
     		function refreshingBackground() {
-    		  document.body.id = `b${int}`;
-     			 int++;
-     		 if (int === frames) {
-        			int = 1;
+    		  document.body.id = `b${frameId}`;
+     			 frameId++;
+     		 if (frameId === frames) {
+        			frameId = 1;
       			}
     		}
     		const swap = window.setInterval(refreshingBackground, interval);
@@ -26,7 +26,7 @@ class App extends Component {
           <h1 className="App-title">
             Ev<img src={logo} className="App-logo" alt="logo" />lutions
           </h1>
-          <UserInput/>
+          <UserInput />
         </div>
       </div>
 		);
