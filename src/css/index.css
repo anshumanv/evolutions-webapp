@@ -1,15 +1,30 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
-body {
+#b1 {
   margin: 0;
   padding: 0;
   font-family: 'Roboto', sans-serif;
   width: 100vw;
   height: 100vh;
-  background: url('http://wallpup.com/wp-content/uploads/2013/02/Cute-Pikachu-Wallpaper.jpg') center center;
+  background: url('https://images3.alphacoders.com/273/273289.jpg') center center;
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+#b2{
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  width: 100vw;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url("https://images.alphacoders.com/502/thumb-350-502390.jpg");
 }

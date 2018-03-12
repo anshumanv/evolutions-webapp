@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import logo from '../logo.svg';
 import UserInput from './UserInput';
+import '../css/index.css';
 
 class App extends Component {
 	
 	componentDidMount(){
 		let interval = 1000;
-		let frames = 10;
+		let frames = 3;
 		let frameId = 1;
 
     		function refreshingBackground() {
