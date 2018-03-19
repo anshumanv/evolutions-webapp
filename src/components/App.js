@@ -6,18 +6,25 @@ import '../css/index.css';
 class App extends Component {
 	
 	componentDidMount(){
-		let interval = 1000;
-		let frames = 3;
-		let frameId = 1;
+		var imageArray = [
+            'http://hdfreewallpaper.net/wp-content/uploads/2016/08/Pokemon-hd-Wallpaper-sumsung-download.jpg',
+            'https://wallpapercave.com/wp/Qf9SNmS.png',
+            'https://images3.alphacoders.com/273/273289.jpg',
+            'https://images4.alphacoders.com/574/thumb-1920-574726.jpg'
+		],
+			currentIndex = 0,
+			Duration = 2000;
 
-    		function refreshingBackground() {
-    		  document.body.id = `b${frameId}`;
-     			 frameId++;
-     		 if (frameId === frames) {
-        			frameId = 1;
-      			}
-    		}
-    		const swap = window.setInterval(refreshingBackground, interval);
+			function refreshingBackground()
+			{
+				document.body.style.backgroundImage = `url(${imageArray[currentIndex]})`
+				currentIndex++;
+				if(currentIndex===imageArray.length){currentIndex=0;}
+				setTimeout(refreshingBackground,Duration);
+			}
+
+			refreshingBackground();
+
 	}
 	
 	render() {
