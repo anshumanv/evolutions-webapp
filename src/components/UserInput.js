@@ -32,8 +32,9 @@ class UserInput extends React.Component {
 	}
 
 	handlingHypeClick(searchInputValue) {
-		this.setState({searchInput: searchInputValue});
-		this.setState({result: this.computeResult(this.state.searchInput)});
+		this.setState({searchInput: searchInputValue}, () => {
+			this.setState({result: this.computeResult(this.state.searchInput)});
+		});
 	}
 
 	computeResult() {
