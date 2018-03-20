@@ -5,6 +5,11 @@ import SkyLight from 'react-skylight';
 import '../css/App.css';
 import FeelingHype from './FeelingHype';
 import PokeSprite from 'react-poke-sprites';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import AutoComplete from 'material-ui/AutoComplete';
+
+const names = [];
+for(const poke in pokedex.BattlePokedex) names.push(poke);
 
 class UserInput extends React.Component {
 	constructor(props) {
@@ -17,7 +22,6 @@ class UserInput extends React.Component {
 		};
 
 		this.handleEvolve = this.handleEvolve.bind(this);
-		this.handleChange = this.handleChange.bind(this);
 		this.computeResult = this.computeResult.bind(this);
 		this.handlingHypeClick = this.handlingHypeClick.bind(this);
 	}
@@ -86,27 +90,31 @@ class UserInput extends React.Component {
 		this.setState({result: this.computeResult(this.state.searchInput), pokemon: this.state.searchInput, searchInput: ''});
 	}
 
-	handleChange(event) {
-		this.setState({[event.target.name]: event.target.value});
+	handleNewRequest = value => {
+		this.setState({
+			searchInput:value,
+			pokemon: this.state.searchInput,
+		});
+		this.setState({
+			result : this.computeResult(this.state.searchInput)
+		})
 	}
 
 	render() {
 		return (
+			<MuiThemeProvider>
             <div className="App">
                 <div className="App-main">
                     <form onSubmit={this.handleEvolve}>
                         <div className="App-search_bar_container">
                             <div className="App-search_bar">
-                                <input
-                                    type="search"
-                                    name="searchInput"
-                                    ref={input => {
-	this.nameInput = input;
-}}
-                                    placeholder="Pokemon's name or ID"
-                                    onChange={this.handleChange}
-                                    value={this.state.searchInput}
-                                />
+                                <AutoComplete
+									floatingLabelText="Pokemon"
+									filter={AutoComplete.fuzzyFilter}
+									dataSource={names}
+									maxSearchResults={6}
+									onNewRequest={this.handleNewRequest}
+								/>
                             </div>
                             <div className="App-search_bar_icon" onClick={this.handleEvolve}>
                                 <svg style={{width: `${24}px`, height: `${24}px`}} viewBox="0 0 24 24">
@@ -131,6 +139,7 @@ class UserInput extends React.Component {
                     <FeelingHype onHypeClick={this.handlingHypeClick}/>
                 </div>
             </div>
+			</MuiThemeProvider>
 		);
 	}
 }
