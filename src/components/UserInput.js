@@ -22,7 +22,6 @@ class UserInput extends React.Component {
 		};
 
 		this.handleEvolve = this.handleEvolve.bind(this);
-		this.handleChange = this.handleChange.bind(this);
 		this.computeResult = this.computeResult.bind(this);
 		this.handlingHypeClick = this.handlingHypeClick.bind(this);
 	}
@@ -97,12 +96,8 @@ class UserInput extends React.Component {
 			pokemon: this.state.searchInput,
 		});
 		this.setState({
-            result : this.computeResult(this.state.searchInput)
+			result : this.computeResult(this.state.searchInput)
 		})
-	}
-
-	handleChange(event) {
-		this.setState({[event.target.name]: event.target.value});
 	}
 
 	render() {
@@ -114,11 +109,11 @@ class UserInput extends React.Component {
                         <div className="App-search_bar_container">
                             <div className="App-search_bar">
                                 <AutoComplete
-								floatingLabelText="Pichu"
-								filter={AutoComplete.fuzzyFilter}
-								dataSource={names}
-								maxSearchResults={6}
-								onNewRequest={this.handleNewRequest}
+									floatingLabelText="Pokemon"
+									filter={AutoComplete.fuzzyFilter}
+									dataSource={names}
+									maxSearchResults={6}
+									onNewRequest={this.handleNewRequest}
 								/>
                             </div>
                             <div className="App-search_bar_icon" onClick={this.handleEvolve}>
