@@ -7,6 +7,12 @@
   height: 60px;
 }
 
+@media screen and (max-width: 465px) {
+  .App-logo {
+    height: 10vw;
+  }
+}
+
 .App-header {
   background-color: #222;
   height: 150px;
