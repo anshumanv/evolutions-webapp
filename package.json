@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "material-ui": "^0.20.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-poke-sprites": "0.0.6",
@@ -38,8 +37,7 @@
     "node-sass": "^4.5.3",
     "prettier": "1.14.2",
     "sass-loader": "^7.1.0",
-    "style-loader": "^0.22.1",
-    "webpack": "^4.16.5"
+    "style-loader": "^0.22.1"
   },
   "lint-staged": {
     "src/**/*.js": [

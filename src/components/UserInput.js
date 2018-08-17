@@ -2,11 +2,11 @@ import React from 'react';
 import { lower, isNum } from '../helpers';
 import pokedex from '../pokedex';
 import SkyLight from 'react-skylight';
-import '../css/App.css';
 import FeelingHype from './FeelingHype';
 import PokeSprite from 'react-poke-sprites';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import AutoComplete from 'material-ui/AutoComplete';
+
+import '../css/App.css';
+import searchLogo from '../search-logo.svg';
 
 const names = [];
 for (const poke in pokedex.BattlePokedex) {
@@ -22,23 +22,19 @@ class UserInput extends React.Component {
       pokemons: [],
       outputVisible: false,
     };
-
-    this.handleEvolve = this.handleEvolve.bind(this);
-    this.computeResult = this.computeResult.bind(this);
-    this.handlingHypeClick = this.handlingHypeClick.bind(this);
   }
 
-  storePokemons(pokemons) {
+  storePokemons = pokemons => {
     this.setState({ pokemons });
-  }
+  };
 
-  handlingHypeClick(searchInputValue) {
+  handlingHypeClick = searchInputValue => {
     this.setState({ searchInput: searchInputValue }, () => {
       this.setState({ result: this.computeResult(this.state.searchInput) });
     });
-  }
+  };
 
-  computeResult() {
+  computeResult = () => {
     let result = ''; // String that contains the final chain.
     let pokemon, temp;
     const pokemons = [];
@@ -89,88 +85,70 @@ class UserInput extends React.Component {
     } catch (error) {
       console.log('The error sent back: ', error);
     }
-  }
+  };
 
-  handleEvolve(event) {
+  handleEvolve = event => {
     event.preventDefault();
     this.setState({
       result: this.computeResult(this.state.searchInput),
       pokemon: this.state.searchInput,
       searchInput: '',
     });
-  }
+  };
 
-  handleNewRequest = value => {
+  handleChange = e => {
     this.setState({
-      searchInput: value,
-      pokemon: this.state.searchInput,
-    });
-    this.setState({
-      result: this.computeResult(this.state.searchInput),
+      searchInput: e.target.value,
     });
   };
 
   render() {
     return (
-      <MuiThemeProvider>
-        <div className="App">
-          <div className="App-main">
-            <form onSubmit={this.handleEvolve}>
-              <div className="App-search_bar_container">
-                <div className="App-search_bar">
-                  <AutoComplete
-                    floatingLabelText="Pokemon"
-                    filter={AutoComplete.fuzzyFilter}
-                    dataSource={names}
-                    maxSearchResults={6}
-                    onNewRequest={this.handleNewRequest}
-                  />
-                </div>
-                <div
-                  className="App-search_bar_icon"
-                  onClick={this.handleEvolve}
-                >
-                  <svg
-                    style={{ width: `${24}px`, height: `${24}px` }}
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      fill="#000000"
-                      d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"
-                    />
-                  </svg>
-                </div>
-                <br />
-              </div>
-              <button
-                type="submit"
-                className="App-button"
-                name="evolveActionButton"
-              >
-                Evolve
-              </button>
-            </form>
-            <SkyLight
-              hideOnOverlayClicked
-              ref={ref => (this.simpleDialog = ref)}
-              title="Result"
-            >
-              <div>{this.state.result}</div>
-              {this.state.pokemons.map(pokemon => {
-                return (
-                  <PokeSprite
-                    pokemon={pokemon}
-                    className="pokemons"
-                    alt={pokemon}
-                    key={pokedex.BattlePokedex[pokemon].num}
-                  />
-                );
-              })}
-            </SkyLight>
-            <FeelingHype onHypeClick={this.handlingHypeClick} />
+      <div>
+        <form onSubmit={this.handleEvolve}>
+          <div className="App-search_bar_container">
+            <div className="App-search_bar">
+              <input
+                type="search"
+                name="searchInput"
+                ref={input => (this.nameInput = input)}
+                placeholder="Pokemon's name or ID"
+                onChange={this.handleChange}
+                value={this.state.searchInput}
+              />
+            </div>
+            <div className="App-search_bar_icon" onClick={this.handleEvolve}>
+              <img src={searchLogo} style={{ margin: '10px' }} alt="Search!" />
+            </div>
+            <br />
           </div>
-        </div>
-      </MuiThemeProvider>
+          <button
+            type="submit"
+            className="App-button"
+            name="evolveActionButton"
+          >
+            Evolve
+          </button>
+        </form>
+        <SkyLight
+          hideOnOverlayClicked
+          ref={ref => (this.simpleDialog = ref)}
+          title="Result"
+        >
+          <div>{this.state.result}</div>
+          {this.state.pokemons.map(pokemon => {
+            return (
+              <PokeSprite
+                pokemon={pokemon}
+                className="pokemons"
+                alt={pokemon}
+                key={pokedex.BattlePokedex[pokemon].num}
+              />
+            );
+          })}
+        </SkyLight>
+        <FeelingHype onHypeClick={this.handlingHypeClick} />
+      </div>
     );
   }
 }
