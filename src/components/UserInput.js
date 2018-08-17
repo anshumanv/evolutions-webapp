@@ -8,11 +8,6 @@ import PokeSprite from 'react-poke-sprites';
 import '../css/App.css';
 import searchLogo from '../search-logo.svg';
 
-const names = [];
-for (const poke in pokedex.BattlePokedex) {
-  names.push(poke);
-}
-
 class UserInput extends React.Component {
   constructor(props) {
     super(props);
