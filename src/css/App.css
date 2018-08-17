@@ -82,3 +82,8 @@
 .pokemons {
   margin: 20px;
 }
+
+.button-group {
+  display: flex;
+  justify-content: center;
+}

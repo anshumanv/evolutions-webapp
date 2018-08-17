@@ -115,15 +115,17 @@ class UserInput extends React.Component {
             <div className="App-search_bar_icon" onClick={this.handleEvolve}>
               <img src={searchLogo} style={{ margin: '10px' }} alt="Search!" />
             </div>
-            <br />
           </div>
-          <button
-            type="submit"
-            className="App-button"
-            name="evolveActionButton"
-          >
-            Evolve
-          </button>
+          <div className="button-group">
+            <button
+              type="submit"
+              className="App-button"
+              name="evolveActionButton"
+            >
+              Evolve
+            </button>
+            <FeelingHype onHypeClick={this.handlingHypeClick} />
+          </div>
         </form>
         <SkyLight
           hideOnOverlayClicked
@@ -142,7 +144,6 @@ class UserInput extends React.Component {
             );
           })}
         </SkyLight>
-        <FeelingHype onHypeClick={this.handlingHypeClick} />
       </div>
     );
   }
