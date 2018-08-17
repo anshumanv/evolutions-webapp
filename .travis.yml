@@ -1,9 +1,9 @@
-language: python
-python: 3.6
+sudo: required
+dist: trusty
+language: node_js
 
-install:
-  - pip install coala-bears
-  - npm i -g jshint
+node_js:
+  - 8
 
 script:
-  - coala --ci
+  - npm test
