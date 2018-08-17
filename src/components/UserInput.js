@@ -113,7 +113,11 @@ class UserInput extends React.Component {
               />
             </div>
             <div className="App-search_bar_icon" onClick={this.handleEvolve}>
-              <img src={searchLogo} style={{ margin: '10px' }} alt="Search!" />
+              <img
+                src={searchLogo}
+                style={{ margin: '10px', maxHeight: '24px' }}
+                alt="Search!"
+              />
             </div>
           </div>
           <div className="button-group">
