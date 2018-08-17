@@ -1,5 +1,7 @@
-import React from "react";
-import pokedex from "../pokedex";
+import React from 'react';
+import PropTypes from 'prop-types';
+
+import pokedex from '../pokedex';
 
 class FeelingHype extends React.Component {
   constructor(props) {
@@ -27,11 +29,15 @@ class FeelingHype extends React.Component {
           name="randomActionButton"
           onClick={this.handleHypeClick}
         >
-          <div>I'm Feeling Hype</div>
+          <div>I&lsquo;m Feeling Hype</div>
         </button>
       </div>
     );
   }
 }
+
+FeelingHype.propTypes = {
+  onHypeClick: PropTypes.func,
+};
 
 export default FeelingHype;

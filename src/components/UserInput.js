@@ -1,24 +1,26 @@
-import React from "react";
-import { lower, isNum } from "../helpers";
-import pokedex from "../pokedex";
-import SkyLight from "react-skylight";
-import "../css/App.css";
-import FeelingHype from "./FeelingHype";
-import PokeSprite from "react-poke-sprites";
-import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
-import AutoComplete from "material-ui/AutoComplete";
+import React from 'react';
+import { lower, isNum } from '../helpers';
+import pokedex from '../pokedex';
+import SkyLight from 'react-skylight';
+import '../css/App.css';
+import FeelingHype from './FeelingHype';
+import PokeSprite from 'react-poke-sprites';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import AutoComplete from 'material-ui/AutoComplete';
 
 const names = [];
-for (const poke in pokedex.BattlePokedex) names.push(poke);
+for (const poke in pokedex.BattlePokedex) {
+  names.push(poke);
+}
 
 class UserInput extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchInput: "Pichu",
-      result: "",
+      searchInput: 'Pichu',
+      result: '',
       pokemons: [],
-      outputVisible: false
+      outputVisible: false,
     };
 
     this.handleEvolve = this.handleEvolve.bind(this);
@@ -37,7 +39,7 @@ class UserInput extends React.Component {
   }
 
   computeResult() {
-    let result = ""; // String that contains the final chain.
+    let result = ''; // String that contains the final chain.
     let pokemon, temp;
     const pokemons = [];
 
@@ -58,7 +60,7 @@ class UserInput extends React.Component {
     try {
       if (pokedex.BattlePokedex.hasOwnProperty(pokemon)) {
         // Pick pre-evolutions
-        while (pokedex.BattlePokedex[pokemon].hasOwnProperty("prevo")) {
+        while (pokedex.BattlePokedex[pokemon].hasOwnProperty('prevo')) {
           pokemon = pokedex.BattlePokedex[pokemon].prevo;
           pokemons.push(pokemon);
           result = `${pokemon} - ` + result; //  '$' ??
@@ -72,20 +74,20 @@ class UserInput extends React.Component {
         result += pokemon;
         pokemons.push(pokemon);
         // Pick evolutions
-        while (pokedex.BattlePokedex[pokemon].hasOwnProperty("evos")) {
+        while (pokedex.BattlePokedex[pokemon].hasOwnProperty('evos')) {
           pokemon = pokedex.BattlePokedex[pokemon].evos[0];
           pokemons.push(pokemon);
           result += ` - ${pokemon}`; // Appending to the result
         }
       } else {
         // Case when no pokemon matches the string in the searchInput
-        result = "No results obtained!";
+        result = 'No results obtained!';
       }
       this.storePokemons(pokemons);
       this.simpleDialog.show();
       return result;
     } catch (error) {
-      console.log("The error sent back: ", error);
+      console.log('The error sent back: ', error);
     }
   }
 
@@ -94,17 +96,17 @@ class UserInput extends React.Component {
     this.setState({
       result: this.computeResult(this.state.searchInput),
       pokemon: this.state.searchInput,
-      searchInput: ""
+      searchInput: '',
     });
   }
 
   handleNewRequest = value => {
     this.setState({
       searchInput: value,
-      pokemon: this.state.searchInput
+      pokemon: this.state.searchInput,
     });
     this.setState({
-      result: this.computeResult(this.state.searchInput)
+      result: this.computeResult(this.state.searchInput),
     });
   };
 
