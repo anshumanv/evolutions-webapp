@@ -20,6 +20,12 @@
   margin: 0;
 }
 
+@media screen and (max-width: 465px) {
+  .App-title {
+    font-size: 10vh;
+  }
+}
+
 .App-main {
   width: 100%;
   height: 100%;
