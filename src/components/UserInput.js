@@ -130,7 +130,7 @@ class UserInput extends React.Component {
         <SkyLight
           hideOnOverlayClicked
           ref={ref => (this.simpleDialog = ref)}
-          title="Result"
+          title="Evolutions"
         >
           <div>{this.state.result}</div>
           {this.state.pokemons.map(pokemon => {
