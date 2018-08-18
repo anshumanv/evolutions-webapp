@@ -3,7 +3,7 @@
   "name": "Get pokémon evolution chain",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "pokeball.png",
       "sizes": "192x192",
       "type": "image/png"
     }
