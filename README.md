@@ -3,7 +3,7 @@
 	<h1 align="center">evolutions-webapp</h1>
 </p>
 <p align="center">
-	<img src="https://img.shields.io/travis/anshumanv/evolutions-webapp.svg?style=for-the-badge" align="center">
+	<a href="https://travis-ci.org/anshumanv/evolutions-webapp"><img src="https://img.shields.io/travis/anshumanv/evolutions-webapp.svg?style=for-the-badge" align="center"></a>
 </p>
 
 <p align="center">A react app to view pokemon evolution chain.</p>
