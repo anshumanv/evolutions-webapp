@@ -7,3 +7,14 @@ node_js:
 
 script:
   - npm test
+
+after_success:
+ - bash ./deploy.sh
+
+cache:
+  directories:
+    - node_modules
+
+branches:
+  only:
+    - master
