@@ -1,6 +1,6 @@
 // Pokedex from: https://github.com/Zarel/Pokemon-Showdown
 // eslint-disable-next-line
-exports.BattlePokedex = {
+export const BattlePokedex = {
   bulbasaur: {
     num: 1,
     species: 'Bulbasaur',
@@ -13789,3 +13789,5 @@ exports.BattlePokedex = {
     eggGroups: ['Undiscovered'],
   },
 };
+
+export const BattlePokedexList = Object.values(BattlePokedex);
