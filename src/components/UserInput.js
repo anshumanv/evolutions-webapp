@@ -1,6 +1,6 @@
 import React from 'react';
-import { lower, isNum } from '../helpers';
-import pokedex from '../pokedex';
+import { getPokemonInheritance } from '../helpers';
+import { BattlePokedex } from '../pokedex';
 import SkyLight from 'react-skylight';
 import FeelingHype from './FeelingHype';
 import PokeSprite from 'react-poke-sprites';
@@ -10,11 +10,26 @@ import searchLogo from '../search-logo.svg';
 
 class UserInput extends React.Component {
   state = {
-    searchInput: 'Pichu',
-    result: '',
-    pokemons: [],
-    outputVisible: false,
+      searchInput: 'Pichu',
+      result: '',
+      pokemons: [],
+      outputVisible: false,
+      hasError: false,
   };
+
+  componentDidCatch(error, info) {
+    this.setState(
+      {
+        hasError: true,
+        pokemons: [],
+        searchInput: '',
+        outputVisible: false,
+      },
+      () => {
+        this.simpleDialog.show();
+      },
+    );
+  }
 
   storePokemons = pokemons => {
     this.setState({ pokemons });
@@ -27,55 +42,14 @@ class UserInput extends React.Component {
   };
 
   computeResult = () => {
-    let result = ''; // String that contains the final chain.
-    let pokemon, temp;
-    const pokemons = [];
-
-    // Setting variables to the searchInput from app state.
-    pokemon = temp = lower(this.state.searchInput);
-    if (isNum(pokemon)) {
-      let pokemon_it = Object.keys(pokedex.BattlePokedex)[pokemon - 1];
-      while (
-        pokedex.BattlePokedex[pokemon_it] &&
-        pokedex.BattlePokedex[pokemon_it].num !== parseInt(temp, 10)
-      ) {
-        pokemon_it = Object.keys(pokedex.BattlePokedex)[pokemon++];
-      }
-      pokemon = temp = pokemon_it;
-    }
-
-    // Iterate and pick evolutions/pre-evolutions.
     try {
-      if (pokedex.BattlePokedex.hasOwnProperty(pokemon)) {
-        // Pick pre-evolutions
-        while (pokedex.BattlePokedex[pokemon].hasOwnProperty('prevo')) {
-          pokemon = pokedex.BattlePokedex[pokemon].prevo;
-          pokemons.push(pokemon);
-          result = `${pokemon} - ` + result; //  '$' ??
-        }
-        pokemons.reverse();
-
-        // Set it to the initially entered pokemon
-        pokemon = temp;
-
-        // Appending originally entered pokemon
-        result += pokemon;
-        pokemons.push(pokemon);
-        // Pick evolutions
-        while (pokedex.BattlePokedex[pokemon].hasOwnProperty('evos')) {
-          pokemon = pokedex.BattlePokedex[pokemon].evos[0];
-          pokemons.push(pokemon);
-          result += ` - ${pokemon}`; // Appending to the result
-        }
-      } else {
-        // Case when no pokemon matches the string in the searchInput
-        result = 'No results obtained!';
-      }
+      const pokemons = getPokemonInheritance(this.state.searchInput);
       this.storePokemons(pokemons);
       this.simpleDialog.show();
-      return result;
+      return pokemons.join(', ');
     } catch (error) {
       console.log('The error sent back: ', error);
+      return error.message;
     }
   };
 
@@ -134,13 +108,13 @@ class UserInput extends React.Component {
           title="Evolutions"
         >
           <div>{this.state.result}</div>
-          {this.state.pokemons.map(pokemon => {
+          {this.state.pokemons.map((pokemon, index) => {
             return (
               <PokeSprite
                 pokemon={pokemon}
                 className="pokemons"
                 alt={pokemon}
-                key={pokedex.BattlePokedex[pokemon].num}
+                key={BattlePokedex[pokemon].num + index}
               />
             );
           })}
