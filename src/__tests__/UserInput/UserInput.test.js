@@ -23,10 +23,11 @@ describe('UserInput component', () => {
     component.find('form').simulate('submit', event);
 
     expect(component.state()).toEqual({
+      hasError: false,
       outputVisible: false,
       pokemon: 'Pikachu',
       pokemons: ['pichu', 'pikachu', 'raichu'],
-      result: 'pichu - pikachu - raichu',
+      result: 'pichu, pikachu, raichu',
       searchInput: '',
     });
   });
@@ -39,18 +40,7 @@ describe('UserInput component', () => {
 
     const result = component.instance().computeResult();
 
-    expect(result).toEqual('bulbasaur - ivysaur - venusaur');
-  });
-
-  it('Displays that there are no results for invalid pokemon', () => {
-    const component = shallow(<UserInput />);
-
-    component.setState({ searchInput: 'invalid' });
-    component.instance().simpleDialog = { show: jest.fn() };
-
-    const result = component.instance().computeResult();
-
-    expect(result).toEqual('No results obtained!');
+    expect(result).toEqual('bulbasaur, ivysaur, venusaur');
   });
 
   it('Can store pokemon', () => {
