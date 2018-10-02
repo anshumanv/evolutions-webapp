@@ -1,6 +1,7 @@
 import React from 'react';
+import Autocomplete from 'react-autocomplete';
 import { getPokemonInheritance } from '../helpers';
-import { BattlePokedex } from '../pokedex';
+import { BattlePokedex, BattlePokedexKeys } from '../pokedex';
 import SkyLight from 'react-skylight';
 import FeelingHype from './FeelingHype';
 import PokeSprite from 'react-poke-sprites';
@@ -77,13 +78,63 @@ class UserInput extends React.Component {
         <form onSubmit={this.handleEvolve}>
           <div className="App-search_bar_container">
             <div className="App-search_bar">
-              <input
-                type="search"
-                name="searchInput"
-                ref={input => (this.nameInput = input)}
-                placeholder="Pokemon's name or ID"
-                onChange={this.handleChange}
+              <Autocomplete
+                getItemValue={p => p}
+                items={BattlePokedexKeys}
+                ref={input => {
+                  this.input = input;
+                }}
+                shouldItemRender={(item, value) =>
+                  item.includes(value.toLowerCase())
+                }
+                renderItem={(pokemon, isHighlighted) => (
+                  <div
+                    key={pokemon}
+                    style={{
+                      background: isHighlighted ? 'lightgray' : 'white',
+                      fontSize: '0.9rem',
+                      padding: '.5rem',
+                      borderBottom: '1px solid #ddd',
+                      boxSizing: 'border-box',
+                      textAlign: 'left',
+                    }}
+                  >
+                    {pokemon}
+                  </div>
+                )}
+                menuStyle={{
+                  borderRadius: '0',
+                  boxShadow: '0 2px 12px rgba(0, 0, 0, 0.1)',
+                  background: 'rgba(255, 255, 255, 0.9)',
+                  padding: '2px 0',
+                  fontSize: '90%',
+                  position: 'fixed',
+                  overflow: 'auto',
+                  maxHeight: '50%',
+                }}
                 value={this.state.searchInput}
+                onChange={this.handleChange}
+                onSelect={value => this.setState({ searchInput: value })}
+                name="searchInput"
+                wrapperProps={{
+                  style: {
+                    boxSizing: 'border-box',
+                    width: '100%',
+                    height: '100%',
+                  },
+                }}
+                inputProps={{
+                  placeholder: "Pokemon's name or ID",
+                  style: {
+                    boxSizing: 'border-box',
+                    width: '100%',
+                    height: '100%',
+                    fontSize: '1rem',
+                    border: 'none',
+                    borderRight: '1px solid #ccc',
+                    paddingLeft: '1rem',
+                  },
+                }}
               />
             </div>
             <div className="App-search_bar_icon" onClick={this.handleEvolve}>
