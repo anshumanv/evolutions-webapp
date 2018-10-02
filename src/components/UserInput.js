@@ -115,6 +115,7 @@ class UserInput extends React.Component {
           {this.state.pokemons.map((pokemon, index) => (
             <PokemonSprite
               pokemon={pokemon}
+              info={BattlePokedex[pokemon]}
               key={BattlePokedex[pokemon].num + index}
             />
           ))}

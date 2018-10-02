@@ -1,33 +1,33 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import PokeSprite from 'react-poke-sprites';
-import { BattlePokedex } from '../pokedex';
+import 'react-tippy/dist/tippy.css';
+import { Tooltip } from 'react-tippy';
 
-export default class PokemonSprite extends Component {
-  static propTypes = {
-    pokemon: PropTypes.string,
-  };
+const Info = ({ info }) => {
+  return (
+    <React.Fragment>
+      <div>name: {info.species} </div>
+      <div>color: {info.color} </div>
+      <div>weight: {info.weightkg} </div>
+      <div>baseStats: {JSON.stringify(info.baseStats)} </div>
+    </React.Fragment>
+  );
+};
 
-  state = {
-    hover: false,
-  };
+const PokemonSprite = ({ pokemon, info }) => (
+  <Tooltip html={<Info info={info} />} position="bottom">
+    <PokeSprite pokemon={pokemon} className="pokemons" alt={pokemon} />
+  </Tooltip>
+);
 
-  onMouseEnter = event => {
-    this.setState({ hover: true });
-  };
+Info.propTypes = {
+  info: PropTypes.object,
+};
 
-  onMouseLeave = event => {
-    this.setState({ hover: false });
-  };
+PokemonSprite.propTypes = {
+  pokemon: PropTypes.string,
+  info: PropTypes.object,
+};
 
-  render() {
-    const { pokemon } = this.props;
-    const { hover } = this.state;
-    return (
-      <span onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave}>
-        <PokeSprite pokemon={pokemon} className="pokemons" alt={pokemon} />
-        {hover && <div>{`${BattlePokedex[pokemon]}`}</div>}
-      </span>
-    );
-  }
-}
+export default PokemonSprite;
