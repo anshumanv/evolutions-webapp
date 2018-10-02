@@ -4,22 +4,21 @@ import PropTypes from 'prop-types';
 import { BattlePokedex } from '../pokedex';
 
 class FeelingHype extends React.Component {
-  constructor(props) {
-    super(props);
-    // This.state = {searchInput:'Pichu'};
-    this.handleHypeClick = this.handleHypeClick.bind(this);
-    this.randomProperty = this.randomProperty.bind(this);
-  }
-  randomProperty(obj) {
+  state = {
+    searchInput: undefined,
+  };
+
+  randomProperty = obj => {
     const keys = Object.keys(obj);
     return keys[(keys.length * Math.random()) << 0];
-  }
-  handleHypeClick(event) {
+  };
+
+  handleHypeClick = event => {
     const searchInput = this.randomProperty(BattlePokedex);
     this.setState({ searchInput });
-    // This.setState({ result: this.computeResult(this.state.searchInput)});
     this.props.onHypeClick(searchInput);
-  }
+  };
+
   render() {
     return (
       <div>
