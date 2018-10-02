@@ -9,15 +9,12 @@ import '../css/App.css';
 import searchLogo from '../search-logo.svg';
 
 class UserInput extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      searchInput: 'Pichu',
-      result: '',
-      pokemons: [],
-      outputVisible: false,
-    };
-  }
+  state = {
+    searchInput: 'Pichu',
+    result: '',
+    pokemons: [],
+    outputVisible: false,
+  };
 
   storePokemons = pokemons => {
     this.setState({ pokemons });
@@ -82,8 +79,8 @@ class UserInput extends React.Component {
     }
   };
 
-  handleEvolve = event => {
-    event.preventDefault();
+  handleEvolve = e => {
+    e.preventDefault();
     this.setState({
       result: this.computeResult(this.state.searchInput),
       pokemon: this.state.searchInput,

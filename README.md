@@ -24,9 +24,17 @@ CLI version of this tool is available in [evolutions](https://github.com/anshuma
 
 ### Development
 
+To install and run locally:
+
 ```sh
 $ git clone https://github.com/anshumanv/evolutions-webapp
 $ npm i && npm start
+```
+
+To run tests locally:
+
+```sh
+$ npm test
 ```
 
 ### Author
