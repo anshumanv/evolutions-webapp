@@ -5,6 +5,7 @@
   "private": true,
   "dependencies": {
     "react": "^16.0.0",
+    "react-autocomplete": "^1.8.1",
     "react-dom": "^16.0.0",
     "react-poke-sprites": "0.0.6",
     "react-pokemon-gif": "^1.0.0",
