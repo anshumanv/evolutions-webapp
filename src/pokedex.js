@@ -13790,4 +13790,6 @@ export const BattlePokedex = {
   },
 };
 
+export const BattlePokedexKeys = Object.keys(BattlePokedex);
+
 export const BattlePokedexList = Object.values(BattlePokedex);
