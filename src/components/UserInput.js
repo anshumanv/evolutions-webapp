@@ -2,6 +2,8 @@ import React from 'react';
 import Autocomplete from 'react-autocomplete';
 import { getPokemonInheritance } from '../helpers';
 import { BattlePokedex, BattlePokedexKeys } from '../pokedex';
+import Search from '../search';
+import { BattlePokedex } from '../pokedex';
 import SkyLight from 'react-skylight';
 import FeelingHype from './FeelingHype';
 import PokeSprite from 'react-poke-sprites';
@@ -16,7 +18,9 @@ class UserInput extends React.Component {
       pokemons: [],
       outputVisible: false,
       hasError: false,
-  };
+    };
+    this.search = new Search(BattlePokedex);
+  }
 
   componentDidCatch(error, info) {
     this.setState(
@@ -44,7 +48,10 @@ class UserInput extends React.Component {
 
   computeResult = () => {
     try {
-      const pokemons = getPokemonInheritance(this.state.searchInput);
+      const pokemons = this.search.getInheritance(
+        this.state.searchInput,
+        this.lookup,
+      );
       this.storePokemons(pokemons);
       this.simpleDialog.show();
       return pokemons.join(', ');
