@@ -3,7 +3,6 @@ import { getPokemonInheritance } from '../helpers';
 import { BattlePokedex } from '../pokedex';
 import SkyLight from 'react-skylight';
 import FeelingHype from './FeelingHype';
-// import PokeSprite from 'react-poke-sprites';
 import PokemonSprite from './PokemonSprite';
 
 import '../css/App.css';
