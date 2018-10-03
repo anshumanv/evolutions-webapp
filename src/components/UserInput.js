@@ -11,11 +11,11 @@ import searchLogo from '../search-logo.svg';
 
 class UserInput extends React.Component {
   state = {
-      searchInput: 'Pichu',
-      result: '',
-      pokemons: [],
-      outputVisible: false,
-      hasError: false,
+    searchInput: 'Pichu',
+    result: '',
+    pokemons: [],
+    outputVisible: false,
+    hasError: false,
   };
 
   componentDidCatch(error, info) {
