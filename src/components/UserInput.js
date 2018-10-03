@@ -1,24 +1,26 @@
 import React from 'react';
 import Autocomplete from 'react-autocomplete';
-import { getPokemonInheritance } from '../helpers';
-import { BattlePokedex, BattlePokedexKeys } from '../pokedex';
-import Search from '../search';
-import { BattlePokedex } from '../pokedex';
 import SkyLight from 'react-skylight';
-import FeelingHype from './FeelingHype';
 import PokeSprite from 'react-poke-sprites';
 
-import '../css/App.css';
+import { BattlePokedex, BattlePokedexKeys } from '../pokedex';
+import Search from '../search';
+import FeelingHype from './FeelingHype';
 import searchLogo from '../search-logo.svg';
+
+import '../css/App.css';
 
 class UserInput extends React.Component {
   state = {
-      searchInput: 'Pichu',
-      result: '',
-      pokemons: [],
-      outputVisible: false,
-      hasError: false,
-    };
+    searchInput: 'Pichu',
+    result: '',
+    pokemons: [],
+    outputVisible: false,
+    hasError: false,
+  };
+
+  constructor(props) {
+    super(props);
     this.search = new Search(BattlePokedex);
   }
 
