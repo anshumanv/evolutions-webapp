@@ -4,18 +4,18 @@ import { getPokemonInheritance } from '../helpers';
 import { BattlePokedex, BattlePokedexKeys } from '../pokedex';
 import SkyLight from 'react-skylight';
 import FeelingHype from './FeelingHype';
-import PokeSprite from 'react-poke-sprites';
+import PokemonSprite from './pokemonSprite/PokemonSprite';
 
 import '../css/App.css';
 import searchLogo from '../search-logo.svg';
 
 class UserInput extends React.Component {
   state = {
-      searchInput: 'Pichu',
-      result: '',
-      pokemons: [],
-      outputVisible: false,
-      hasError: false,
+    searchInput: 'Pichu',
+    result: '',
+    pokemons: [],
+    outputVisible: false,
+    hasError: false,
   };
 
   componentDidCatch(error, info) {
@@ -159,16 +159,13 @@ class UserInput extends React.Component {
           title="Evolutions"
         >
           <div>{this.state.result}</div>
-          {this.state.pokemons.map((pokemon, index) => {
-            return (
-              <PokeSprite
-                pokemon={pokemon}
-                className="pokemons"
-                alt={pokemon}
-                key={BattlePokedex[pokemon].num + index}
-              />
-            );
-          })}
+          {this.state.pokemons.map((pokemon, index) => (
+            <PokemonSprite
+              pokemon={pokemon}
+              info={BattlePokedex[pokemon]}
+              key={BattlePokedex[pokemon].num + index}
+            />
+          ))}
         </SkyLight>
       </div>
     );

@@ -1,14 +1,13 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import UserInput from '../../components/UserInput';
+import Autocomplete from 'react-autocomplete';
 
 describe('UserInput component', () => {
   it('Updates state when something is searched', () => {
     const component = shallow(<UserInput />);
     const event = { target: { value: 'Pikachu' } };
-
-    component.find('.App-search_bar > input').simulate('change', event);
-
+    component.find(Autocomplete).simulate('change', event);
     expect(component.state().searchInput).toEqual('Pikachu');
   });
 
