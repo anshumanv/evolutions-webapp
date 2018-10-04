@@ -5,7 +5,7 @@ import '../../css/PokemonSprite.css';
 
 const Info = ({ info }) => (
   <div className="PokemonSprite-container">
-    <div> {`${info.species} [#${info.num}] (${info.types.join(', ')})`} </div>
+    <div> {`[#${info.num}] ${info.species} (${info.types.join(', ')})`} </div>
     <div>
       Weight: {info.weightkg} kg, Height: {info.heightm} m
     </div>

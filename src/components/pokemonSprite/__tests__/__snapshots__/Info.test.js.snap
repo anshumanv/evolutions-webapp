@@ -36,7 +36,7 @@ ShallowWrapper {
       "children": Array [
         <div>
            
-          pikachu [#25] (Electric)
+          [#25] pikachu (Electric)
            
 </div>,
         <div>
@@ -65,14 +65,14 @@ ShallowWrapper {
         "props": Object {
           "children": Array [
             " ",
-            "pikachu [#25] (Electric)",
+            "[#25] pikachu (Electric)",
             " ",
           ],
         },
         "ref": null,
         "rendered": Array [
           " ",
-          "pikachu [#25] (Electric)",
+          "[#25] pikachu (Electric)",
           " ",
         ],
         "type": "div",
@@ -142,7 +142,7 @@ ShallowWrapper {
         "children": Array [
           <div>
              
-            pikachu [#25] (Electric)
+            [#25] pikachu (Electric)
              
 </div>,
           <div>
@@ -171,14 +171,14 @@ ShallowWrapper {
           "props": Object {
             "children": Array [
               " ",
-              "pikachu [#25] (Electric)",
+              "[#25] pikachu (Electric)",
               " ",
             ],
           },
           "ref": null,
           "rendered": Array [
             " ",
-            "pikachu [#25] (Electric)",
+            "[#25] pikachu (Electric)",
             " ",
           ],
           "type": "div",
