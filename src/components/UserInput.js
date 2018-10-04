@@ -2,7 +2,6 @@ import React from 'react';
 import Autocomplete from 'react-autocomplete';
 import SkyLight from 'react-skylight';
 import PokeSprite from 'react-poke-sprites';
-
 import { BattlePokedex, BattlePokedexKeys } from '../pokedex';
 import Search from '../search';
 import FeelingHype from './FeelingHype';
@@ -168,16 +167,13 @@ class UserInput extends React.Component {
           title="Evolutions"
         >
           <div>{this.state.result}</div>
-          {this.state.pokemons.map((pokemon, index) => {
-            return (
-              <PokeSprite
-                pokemon={pokemon}
-                className="pokemons"
-                alt={pokemon}
-                key={BattlePokedex[pokemon].num + index}
-              />
-            );
-          })}
+          {this.state.pokemons.map((pokemon, index) => (
+            <PokemonSprite
+              pokemon={pokemon}
+              info={BattlePokedex[pokemon]}
+              key={BattlePokedex[pokemon].num + index}
+            />
+          ))}
         </SkyLight>
       </div>
     );

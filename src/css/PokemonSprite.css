@@ -1,0 +1,14 @@
+.PokemonSprite-row {
+  overflow: auto;
+  height: 100%;
+}
+
+.PokemonSprite-col {
+  float: left;
+  width: 33%;
+}
+
+.PokemonSprite-container {
+  text-align: left;
+  width: 300px;
+}

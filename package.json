@@ -10,7 +10,8 @@
     "react-poke-sprites": "0.0.6",
     "react-pokemon-gif": "^1.0.0",
     "react-scripts": "1.1.4",
-    "react-skylight": "^0.5.0"
+    "react-skylight": "^0.5.0",
+    "react-tippy": "^1.2.3"
   },
   "scripts": {
     "start": "react-scripts start",
